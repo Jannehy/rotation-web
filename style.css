@@ -1,0 +1,214 @@
+/* Rotation — the palette is the app's own default accent, sunset on near
+   black. The app itself carries six of them; a page can only wear one. */
+:root {
+  --bg:        #0a0a0f;
+  --surface:   #14141d;
+  --surface-2: #1a1a26;
+  --line:      #262633;
+  --ink:       #ececf2;
+  --ink-dim:   #8e8ea3;
+  --ink-faint: #5a5a6e;
+  --accent:    #ff5a3c;
+  --accent-ink:#1a0603;
+  --radius:    14px;
+  --wrap:      1040px;
+  /* Space Grotesk for the headings: the numbers are the point of this page,
+     and it draws figures that are easy to read at a glance. */
+  --display:   "Space Grotesk", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { width: min(var(--wrap), calc(100% - 3rem)); margin-inline: auto; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---------------------------------------------------------------- hero */
+
+.hero {
+  position: relative;
+  padding: clamp(4rem, 12vw, 8rem) 0 clamp(3rem, 8vw, 5rem);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Concentric rings behind the mark, as if the record kept going past the
+   edge of the page. */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -34%;
+  left: 50%;
+  width: min(940px, 130%);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(circle, rgba(255, 90, 60, 0.16), transparent 58%),
+    repeating-radial-gradient(circle, rgba(255, 255, 255, 0.035) 0 1px,
+                              transparent 1px 14px);
+  -webkit-mask-image: radial-gradient(circle, #000 35%, transparent 70%);
+          mask-image: radial-gradient(circle, #000 35%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero .wrap { position: relative; }
+
+.mark { color: var(--accent); width: clamp(96px, 18vw, 132px); margin: 0 auto 1.5rem; }
+.mark svg { width: 100%; height: auto; display: block; }
+
+h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(2.6rem, 8vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.tagline {
+  margin: 0.4rem 0 0;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  color: var(--accent);
+}
+
+.lede {
+  max-width: 46rem;
+  margin: 1.5rem auto 0;
+  font-size: 1.075rem;
+  color: var(--ink-dim);
+}
+
+.actions { margin: 2.2rem 0 0; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+
+.button {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  font-weight: 600;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.button:hover { border-color: var(--accent); text-decoration: none; transform: translateY(-1px); }
+.button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.button.primary:hover { filter: brightness(1.08); }
+
+.meta { margin-top: 2rem; font-size: 0.85rem; color: var(--ink-faint); }
+
+/* ------------------------------------------------------------ sections */
+
+.section { padding: clamp(3rem, 8vw, 5.5rem) 0; border-top: 1px solid var(--line); }
+
+h2 {
+  margin: 0 0 0.6rem;
+  font-family: var(--display);
+  text-wrap: balance;
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  letter-spacing: -0.01em;
+}
+
+.section-lede { margin: 0 0 2.5rem; max-width: 44rem; color: var(--ink-dim); }
+
+h3 { margin: 0 0 0.4rem; font-size: 1.05rem; font-family: var(--display); }
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  margin-top: 2rem;
+}
+.grid.two { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+.grid article {
+  padding: 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.grid article p { margin: 0; color: var(--ink-dim); font-size: 0.95rem; }
+.grid article p + p { margin-top: 1rem; }
+
+/* The apps section carries the phones, so it gets its own quiet ground to sit
+   the screenshots on rather than floating them over the page background. */
+.apps { background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%); }
+
+/* ---------------------------------------------------------- screenshots */
+
+.shots {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(200px, 1fr);
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scroll-snap-type: x mandatory;
+}
+.shots img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  scroll-snap-align: start;
+}
+
+/* ------------------------------------------------------------- code */
+
+pre {
+  margin: 1rem 0;
+  padding: 1.1rem 1.3rem;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.875rem;
+}
+p code {
+  padding: 0.15em 0.4em;
+  background: var(--surface-2);
+  border-radius: 5px;
+  color: var(--ink);
+}
+
+.legal p { color: var(--ink-dim); max-width: 46rem; }
+
+/* ------------------------------------------------------- policy page */
+
+.policy { padding: clamp(3rem, 8vw, 5rem) 0; }
+.policy .wrap { max-width: 44rem; }
+.policy h1 { font-size: clamp(2rem, 5vw, 2.6rem); }
+.policy h2 { margin-top: 2.5rem; font-size: 1.25rem; }
+.policy p, .policy li { color: var(--ink-dim); }
+.policy ul { padding-left: 1.2rem; }
+.policy li { margin-bottom: 0.4rem; }
+.policy .updated { color: var(--ink-faint); font-size: 0.85rem; }
+
+/* ----------------------------------------------------------- footer */
+
+footer {
+  padding: 2.5rem 0 3.5rem;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  color: var(--ink-dim);
+}
+footer .small { font-size: 0.85rem; color: var(--ink-faint); }
+
+@media (max-width: 640px) {
+  .shots { grid-auto-columns: minmax(160px, 70%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button { transition: none; }
+}

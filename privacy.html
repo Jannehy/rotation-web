@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy — Rotation</title>
+<meta name="description" content="Rotation's privacy policy: what the apps store, what they send, and to whom.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="policy">
+  <div class="wrap">
+    <p><a href="./">&larr; Rotation</a></p>
+    <h1>Privacy</h1>
+    <p class="updated">Last updated: 21 August 2026</p>
+
+    <p>Rotation is self-hosted software. It runs on a server that you operate,
+    next to your own Navidrome installation. The iOS and Android apps are views
+    onto that server. There is no Rotation cloud service, no account with us, and
+    no company behind this that could collect anything: we — the developer of
+    Rotation — never receive your data, because it never leaves your server.</p>
+
+    <h2>What the apps send, and where</h2>
+    <p>The apps talk to exactly one address: the server address you enter
+    yourself when you first open them. They send:</p>
+    <ul>
+      <li>your Navidrome user name and password, once, to sign in — after that a
+      session cookie issued by your server;</li>
+      <li>requests for your own statistics, artwork and audio previews.</li>
+    </ul>
+    <p>They contact no analytics service, no advertising network and no crash
+    reporter. There are no third-party SDKs of that kind in either app.</p>
+
+    <h2>What stays on your device</h2>
+    <ul>
+      <li>the server address and your session, so you do not sign in every time;</li>
+      <li>your display preferences: language, light or dark, accent colour, and
+      whether the December recap reminder is on;</li>
+      <li>a short audio cache for previews, cleared when the app closes.</li>
+    </ul>
+    <p>Deleting the app removes all of it.</p>
+
+    <h2>What the server stores</h2>
+    <p>Rotation reads the play counts that Navidrome has already recorded, in
+    read-only mode. Its own small database holds only what Navidrome does not:
+    which users you have added as friends, your settings, and the rules for
+    playlists you asked it to maintain. Playlists are written back into Navidrome
+    through Navidrome's official API, as your own user.</p>
+
+    <h2>Notifications</h2>
+    <p>The apps can remind you on 1 December that your yearly recap is ready.
+    That reminder is scheduled locally on the device. No push server is involved,
+    and nothing is registered anywhere.</p>
+
+    <h2>Demo mode</h2>
+    <p>Both apps can be opened in a demo mode that shows an invented listening
+    history without any server. In demo mode nothing is transmitted at all.</p>
+
+    <h2>Children</h2>
+    <p>Rotation is not directed at children and collects no data from anyone.</p>
+
+    <h2>Changes</h2>
+    <p>If this policy changes, the date above changes with it. The app is open
+    source, so every change is visible in its history.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about privacy in Rotation: <a href="mailto:support@rotationmusic.org">support@rotationmusic.org</a>,
+    or an issue at <a href="https://github.com/Jannehy/rotation">github.com/Jannehy/rotation</a>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><a href="./">Rotation</a> · <a href="https://github.com/Jannehy/rotation">GitHub</a></p>
+    <p class="small">MIT licensed. Built by <a href="https://github.com/Jannehy">Jannehy</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

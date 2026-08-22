@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rotation — your listening year, on your own server</title>
+<meta name="description" content="Self-hosted listening statistics for Navidrome: top artists, tracks and albums, a yearly recap you can play through, and top-track playlists written back into your library. Web, iOS and Android.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<meta property="og:title" content="Rotation">
+<meta property="og:description" content="Your listening year, on your own server. Statistics and a yearly recap for Navidrome — web, iOS and Android.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rotationmusic.org/">
+<meta property="og:image" content="https://rotationmusic.org/assets/icon.png">
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 64 64">
+        <g fill="none" stroke="currentColor" stroke-width="1.6">
+          <circle cx="32" cy="32" r="30" opacity="0.25"/>
+          <circle cx="32" cy="32" r="24" opacity="0.45"/>
+          <circle cx="32" cy="32" r="18" opacity="0.65"/>
+          <circle cx="32" cy="32" r="12" opacity="0.85"/>
+        </g>
+        <circle cx="32" cy="32" r="7" fill="currentColor"/>
+        <circle cx="32" cy="32" r="2.2" fill="#0a0a0f"/>
+      </svg>
+    </div>
+    <h1>Rotation</h1>
+    <p class="tagline">Your listening year, on your own server.</p>
+    <p class="lede">
+      Listening statistics for Navidrome. Top artists, tracks, albums and genres
+      over any period, a yearly recap you play through like a story, and
+      top-track playlists that write themselves back into your library — in the
+      browser and as native apps for iPhone and Android.
+    </p>
+    <p class="actions">
+      <a class="button primary" href="#install">Get started</a>
+      <a class="button" href="https://github.com/Jannehy/rotation">Source on GitHub</a>
+    </p>
+    <p class="meta">MIT licensed · Docker or bare metal · reads Navidrome&rsquo;s database read-only</p>
+  </div>
+</header>
+
+<main>
+
+<section class="section">
+  <div class="wrap">
+    <h2>What it does</h2>
+    <p class="section-lede">
+      Navidrome already counts every play. Rotation is the part that reads those
+      numbers back to you.
+    </p>
+    <div class="grid">
+      <article>
+        <h3>Top lists over any period</h3>
+        <p>Artists, tracks, albums and genres for the last 7, 30 or 90 days, this
+        year, or all time — each with its rank, its plays and the hours behind
+        them.</p>
+      </article>
+      <article>
+        <h3>Your year as a story</h3>
+        <p>A full-screen recap that runs by itself: hold to pause, tap to step,
+        with music from your own library underneath and questions that ask you to
+        guess before they tell you.</p>
+      </article>
+      <article>
+        <h3>Playlists that keep themselves</h3>
+        <p>Turn any top list into a real Navidrome playlist — 25, 50 or 100
+        tracks — refreshed daily and clearly marked as maintained, so every
+        client on your network gets it.</p>
+      </article>
+      <article>
+        <h3>When you listen</h3>
+        <p>A timeline, a clock of your day, and a weekday-by-hour heatmap.
+        Rotation buckets plays into your own time zone, not the server&rsquo;s.</p>
+      </article>
+      <article>
+        <h3>Friends on the same server</h3>
+        <p>Add other users of your Navidrome, see what they have on rotation, and
+        find the artists you have in common.</p>
+      </article>
+      <article>
+        <h3>Six palettes, two themes</h3>
+        <p>Sunset, mint, violet, ocean, gold or rose, light or dark, English or
+        German. On iOS the home screen icon follows the colour you pick.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section apps" id="apps">
+  <div class="wrap">
+    <h2>Apps for your phone</h2>
+    <p class="section-lede">
+      Native clients for iOS and Android, talking to the same API as the browser.
+      Point them at your server, sign in with your Navidrome account, done.
+    </p>
+
+    <div class="shots">
+      <img src="assets/screenshots/01-overview.png" alt="The overview with top artists and tracks" loading="lazy">
+      <img src="assets/screenshots/02-artist.png" alt="An artist page with its rank and plays" loading="lazy">
+      <img src="assets/screenshots/03-wrapped.png" alt="The yearly recap card" loading="lazy">
+      <img src="assets/screenshots/04-history.png" alt="The weekday and hour heatmap" loading="lazy">
+    </div>
+
+    <div class="grid two">
+      <article>
+        <h3>iOS</h3>
+        <p>SwiftUI, iPhone and iPad with iOS 16 or newer.</p>
+        <p><a class="button" href="https://github.com/Jannehy/rotation-ios">rotation-ios</a></p>
+      </article>
+      <article>
+        <h3>Android</h3>
+        <p>Jetpack Compose, Android 8 or newer.</p>
+        <p><a class="button" href="https://github.com/Jannehy/rotation-android">rotation-android</a></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="install">
+  <div class="wrap">
+    <h2>Getting started</h2>
+    <p class="section-lede">
+      Rotation needs two things: read access to Navidrome&rsquo;s data directory,
+      and a URL it can reach Navidrome on. It writes nothing to Navidrome&rsquo;s
+      database — playlists go through the official API, as your own user.
+    </p>
+
+    <h3>Docker</h3>
+<pre><code>services:
+  rotation:
+    image: ghcr.io/jannehy/rotation:latest
+    container_name: rotation
+    ports:
+      - "8770:8770"
+    volumes:
+      # Navidrome's data directory, read-only. Mount the directory, not just
+      # the .db file — SQLite needs the -wal and -shm files next to it.
+      - /path/to/navidrome:/navidrome:ro
+      # Rotation's own small database: friendships, settings, playlist rules.
+      - ./data:/data
+    environment:
+      - NAVIDROME_URL=http://navidrome:4533
+      - TZ=Europe/Berlin
+    restart: unless-stopped</code></pre>
+    <pre><code>docker compose up -d</code></pre>
+    <p>Open <code>http://your-server:8770</code> and sign in with any Navidrome
+    account. There is no separate user database and no setup wizard — Navidrome
+    decides who gets in.</p>
+
+    <h3>Bare metal</h3>
+    <p>A normal Python application with a production WSGI server in the box:
+    <code>pip install -r requirements.txt</code>, set <code>NAVIDROME_DB</code>
+    and <code>NAVIDROME_URL</code>, then <code>python -m rotation</code>. The
+    <a href="https://github.com/Jannehy/rotation#bare-metal">README</a> has the
+    full list of environment variables.</p>
+  </div>
+</section>
+
+<section class="section legal">
+  <div class="wrap">
+    <h2>Where your data stays</h2>
+    <p>On your server. Rotation has no cloud component, no account system and no
+    analytics: it reads the play counts Navidrome has already recorded, and the
+    only thing it ever writes is a playlist you asked for, through Navidrome&rsquo;s
+    own API.</p>
+    <p>The apps talk to your server and to nothing else. What they keep on the
+    device is your server address, your session and your display preferences.
+    See the <a href="privacy.html">privacy policy</a>.</p>
+    <p>This project is not affiliated with Navidrome, Spotify, Apple or Google.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>
+      <a href="https://github.com/Jannehy/rotation">Server</a> ·
+      <a href="https://github.com/Jannehy/rotation-ios">iOS</a> ·
+      <a href="https://github.com/Jannehy/rotation-android">Android</a> ·
+      <a href="privacy.html">Privacy</a>
+    </p>
+    <p class="small">MIT licensed. Built by <a href="https://github.com/Jannehy">Jannehy</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>
