@@ -113,6 +113,36 @@ h1 {
 .button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .button.primary:hover { filter: brightness(1.08); }
 
+/* Store badges. Apple's artwork is fixed in shape and colour, so the "soon"
+   placeholder next to it only borrows its height and radius instead of
+   imitating it - a fake badge would read as a working link. */
+.stores {
+  margin: 1.4rem 0 0;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.stores.start { justify-content: flex-start; margin-top: 1rem; }
+
+.store { display: inline-flex; align-items: center; }
+.store img { display: block; height: 44px; width: auto; }
+a.store { transition: transform 0.15s, opacity 0.15s; }
+a.store:hover { transform: translateY(-1px); opacity: 0.85; text-decoration: none; }
+
+.store.soon {
+  height: 44px;
+  padding: 0 1.1rem;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  font-weight: 600;
+  gap: 0.45rem;
+}
+.store.soon small { font-weight: 400; font-size: 0.8rem; }
+
 .meta { margin-top: 2rem; font-size: 0.85rem; color: var(--ink-faint); }
 
 /* ------------------------------------------------------------ sections */
@@ -220,5 +250,5 @@ footer .small { font-size: 0.85rem; color: var(--ink-faint); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .button { transition: none; }
+  .button, a.store { transition: none; }
 }
